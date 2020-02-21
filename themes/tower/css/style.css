@@ -33,7 +33,14 @@ a.anchor { color: #38b764 }
     margin-left: 1em;
     font-size: 2em
 }
-.fineprint { text-align: center; font-size: .9em; margin-top: .5em; color: #41a6f6 }
+.fineprint {
+    line-height: 1.2;
+    text-align: center;
+    font-size: .9em;
+    margin-top: .5em;
+    color: #41a6f6;
+    max-width: 1100px;
+}
 .tag-low { font-size: .8em; font-weight: 200 }
 .tag-medium { font-size: 1.2em; font-weight: 600 }
 .tag-high { font-size: 1.8em; font-weight: 800 }
@@ -44,14 +51,12 @@ pre { overflow: auto; margin-left: 1em; padding: 0.5em; border-left: 1px dashed;
 tt { font-size: .9em; font-family: (unquote mono-font) }
 
 .navigation {
-    padding-top: 132px;
-    padding-left: 220px;
-    padding-bottom: 12px;
-    font-size: 1.8em;
+    padding-top: 90px;
+    padding-left: 240px;
+    padding-bottom: 36px;
+    font-size: 2.8em;
     border-bottom: 1px solid;
     background: url("tower_logo.png") no-repeat;
-    //background-image: url("tower_logo.svg");
-    //background-image: url("tower_logo.png");
     background-size: contain;
     background-position: 20px 0px;
 }
@@ -66,7 +71,7 @@ tt { font-size: .9em; font-family: (unquote mono-font) }
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 75%;
+    width: 85%;
 }
 
 /* for image caption */
