@@ -18,7 +18,20 @@
   </head>
   <body>
     <div class="navigation">
-      <a href="{$config.domain}">{$config.title}</a> |
+      <div class="nav_logo"></div>
+      <div class="nav_title">
+        <a href="{$config.domain}">{$config.title}</a>
+      </div>
+      <div class="nav_refs"></div>
+      <div class="nav_sides">
+        <div class="side_en" title="Good Side" onclick="window.location='{$config.domain}/tag/en.html';">
+          <span>En</span>
+        </div>
+        <div class="side_ru" title="Dark Side" onclick="window.location='{$config.domain}/tag/ru.html';">
+          <span>Ru</span>
+        </div>
+      </div>
+      <div class="nav_sitenav">
       {foreach $link in $config.sitenav}
         {if $link.relative}
           <a href="{$config.domain}/{$link.url}">{$link.name}</a>
@@ -27,6 +40,7 @@
         {/if}
         {if not isLast($link)} {sp}|{sp} {/if}
       {/foreach}
+      </div>
     </div>
     <div id="content">
       {$raw |noAutoescape}
@@ -45,8 +59,9 @@
           <img alt="Creative Commons License" style="border-width:0" src="{$config.domain}/css/cc-by-sa.png" />
         </a>
       {/if}
-      by {$config.author} </br>
-      Powered by <a href="https://github.com/coleslaw-org/coleslaw">Coλeslaw</a>.
+      by {$config.author}. </br>
+        Powered by <a href="https://github.com/coleslaw-org/coleslaw">Coλeslaw</a>.
+        Design elements' artwork created with <a href="https://ephtracy.github.io">MagicaVoxel</a>.
     </div>
   </body>
 </html>

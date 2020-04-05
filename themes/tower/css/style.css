@@ -1,4 +1,10 @@
-#content { background: #333c57; padding-top: 1em; color:#f4f4f4 }
+#content {
+    background: #333c57;
+    padding-top: 1em;
+    color:#f4f4f4;
+    border: 2px solid;
+    border-color: #000;
+}
 #header { float: right; margin-left: 1em; margin-bottom: 1em }
 #coleslaw-logo { float: right; }
 #tagsoup, #monthsoup { color: #ffcd75 }
@@ -47,19 +53,84 @@ a.anchor { color: #38b764 }
 .tag-high { font-size: 1.8em; font-weight: 800 }
 code { color: #73eff7 }
 body { background-color: #161e3b; font-family: PT Mono; font-size: 14pt }
-pre { overflow: auto; margin-left: 1em; padding: 0.5em; border-left: 1px dashed;
+pre { overflow: auto; margin-left: 1em; padding: 0.5em;
       background-color: #1f2438; padding: .75em .5em; font-family: (unquote mono-font) }
 tt { font-size: .9em; font-family: (unquote mono-font) }
 
+.linenos { color: #a1d45b }
+
 .navigation {
-    padding-top: 90px;
-    padding-left: 240px;
-    padding-bottom: 36px;
-    font-size: 2.8em;
-    border-bottom: 1px solid;
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: 1.2fr 3fr 1.8fr;
+    grid-auto-rows: minmax(60px, auto);
+    margin-bottom: 8px;
+    row-gap: 24px;
     background: url("tower_logo.png") no-repeat;
-    background-size: contain;
+    background-size: 180px;
     background-position: 20px 0px;
+}
+
+.nav_logo {
+    min-height: 155px;
+    min-width: 220px;
+}
+
+.nav_title, .nav_refs {
+    font-size: 2.8em;
+    display: flex;
+}
+
+.nav_title a, .nav_refs a {
+    display: flex;
+    align-self: flex-end;
+}
+
+.nav_sides {
+    min-width: 220px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.side_en, .side_ru {
+    font-size: 1.4em;
+    display: flex;
+    cursor: pointer;
+}
+
+.side_en span, .side_ru span {
+    margin: auto;
+}
+
+.side_en {
+    color: #ffcd75;
+    background: url("side_en.png") no-repeat;
+    background-size: 110px 60px;
+    background-position: 0px 0px;
+}
+
+.side_en:hover {
+    background: url("side_en_hov.png") no-repeat;
+    background-size: 110px 60px;
+    background-position: 0px 0px;
+}
+
+.side_ru {
+    color: #41a6f6;
+    background: url("side_ru.png") no-repeat;
+    background-size: 110px 60px;
+    background-position: 0px 0px;
+}
+
+.side_ru:hover {
+    background: url("side_ru_hov.png") no-repeat;
+    background-size: 110px 60px;
+    background-position: 0px 0px;
+}
+
+.nav_sitenav {
+     grid-column-start: 2;
+     grid-column-end: 4;
 }
 
 .article img {
