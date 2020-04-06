@@ -35,7 +35,12 @@
                          (merge-pathnames "js" theme-dir)
                          (repo-path "static")))
         (when (probe-file dir)
-          (run-program "rsync --delete -raz ~a ." dir))))
+          (run-program "rsync --delete -raz ~a ." dir)))
+      (cl-fad:walk-directory            ; sync files from `root-static`
+       (repo-path "root-static")        ; to the root of staging dir
+       #'(lambda (file)
+           (run-program "rsync --delete -raz ~a ." file))
+       :if-does-not-exist :ignore))
     (do-subclasses (ctype content)
       (publish ctype))
     (do-subclasses (itype index)
