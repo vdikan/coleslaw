@@ -76,14 +76,43 @@ tt { font-size: .9em; font-family: (unquote mono-font) }
     min-width: 220px;
 }
 
-.nav_title, .nav_refs {
+.nav_title {
     font-size: 2.8em;
     display: flex;
 }
 
-.nav_title a, .nav_refs a {
+.nav_title a {
     display: flex;
     align-self: flex-end;
+}
+
+.nav_refs {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(55px, auto);
+    align-items: end;
+}
+
+.nav_refs div{
+    min-width: 55px;
+    height: 55px;
+    cursor: pointer;
+}
+
+.ref_github {
+     grid-column-start: 3;
+     grid-column-end: 4;
+     background: url("icon_github.png") no-repeat;
+     background-size: 55px 55px;
+     background-position: 0px 0px;
+}
+
+.ref_linkedin {
+     grid-column-start: 4;
+     grid-column-end: 5;
+     background: url("icon_linkedin.png") no-repeat;
+     background-size: 55px 55px;
+     background-position: 0px 0px;
 }
 
 .nav_sides {
