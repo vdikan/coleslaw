@@ -7,6 +7,13 @@
     <title>{$config.title}</title>
     <meta http-equiv="content-type" content="text/html;" charset="{$config.charset}" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {if $injections.head}
+      {foreach $injection in $injections.head}
+        {$injection |noAutoescape}
+      {/foreach}
+    {/if}
+
     <link rel="apple-touch-icon" sizes="180x180" href="{$config.domain}/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="{$config.domain}/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="{$config.domain}/favicon-16x16.png">
@@ -14,11 +21,6 @@
     <link href="//fonts.googleapis.com/css?family=PT Mono:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css" />
     <link href="{$config.domain}/css/style.css" rel="stylesheet" type="text/css" />
     <link rel="alternate" href="{$config.domain}/rss.xml" type="application/rss+xml" />
-    {if $injections.head}
-      {foreach $injection in $injections.head}
-        {$injection |noAutoescape}
-      {/foreach}
-    {/if}
   </head>
   <body>
     <div class="navigation">

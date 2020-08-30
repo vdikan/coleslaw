@@ -4,11 +4,12 @@
   ((title  :initarg :title  :reader title-of)
    (author :initarg :author :reader author-of)
    (excerpt :initarg :excerpt :reader excerpt-of)
-   (format :initarg :format :reader post-format))
-  (:default-initargs :author nil :excerpt nil))
+   (format :initarg :format :reader post-format)
+   (ogimage :initarg :ogimage :reader ogimage-of))
+  (:default-initargs :author nil :excerpt nil :ogimage nil))
 
 (defmethod initialize-instance :after ((object post) &key)
-  (with-slots (url title author excerpt format text) object
+  (with-slots (url title author excerpt format ogimage text) object
     (let (post-content)
       (setf url (compute-url object (slugify title))
             format (make-keyword (string-upcase format))
@@ -18,7 +19,9 @@
                                       post-content
                                       :limit 2)))
             text post-content
-            author (or author (author *config*))))))
+            author (or author (author *config*))
+            ;; ogimage (or ogimage (ogimage *config*))
+            ogimage ogimage))))
 
 (defmethod render ((object post) &key prev next)
   (funcall (theme-fn 'post) (list :config *config*
