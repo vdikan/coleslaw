@@ -22,8 +22,9 @@ a.anchor { color: #38b764 }
 .title {
     color:#ef7d57
 }
-.article-meta .title {
-    margin-left: 0em;
+#content .title, .article-meta .title {
+    margin-left: 1.0em;
+    margin-right: 1.0em;
 }
 .article-meta {
     margin-bottom: 2.2em;
@@ -32,11 +33,12 @@ a.anchor { color: #38b764 }
     margin-left: 2.2em;
     margin-right: 2.2em;
     text-align: justify;
-    max-width: 1100px;
+    max-width: 900px;
 }
 .archive-title { font-size: 1em }
 .article-title {
     margin-left: 1em;
+    margin-right: 1em;
     font-size: 2em
 }
 .fineprint {
@@ -46,7 +48,7 @@ a.anchor { color: #38b764 }
     margin-top: .5em;
     margin-left: 2.2em;
     color: #41a6f6;
-    max-width: 1100px;
+    max-width: 900px;
 }
 .tag-low { font-size: .8em; font-weight: 200 }
 .tag-medium { font-size: 1.2em; font-weight: 600 }
@@ -60,7 +62,7 @@ tt { font-size: .9em; font-family: (unquote mono-font) }
 .linenos { color: #a1d45b }
 
 .navigation {
-    max-width: 1100px;
+    max-width: 900px;
     display: grid;
     grid-template-columns: 1.2fr 3fr 1.8fr;
     grid-auto-rows: minmax(60px, auto);
@@ -166,13 +168,16 @@ tt { font-size: .9em; font-family: (unquote mono-font) }
     display: block;
     margin-left: none;
     margin-right: auto;
-    width: 55%;
+    border-radius: 8px;
+    width: 65%;
 }
 .article-content img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 85%;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 640px;
 }
 
 /* for image caption */
@@ -189,14 +194,41 @@ tt { font-size: .9em; font-family: (unquote mono-font) }
     font-size: 90%;
 }
 
+/* responsive video embeds */
+.video-container {
+    overflow: hidden;
+    position: relative;
+    width:100%;
+}
+
+.video-container::after {
+    padding-top: 56.25%;        /* sets the aspect ratio */
+    display: block;
+    content: '';
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* responsive-ness */
 @media (max-width: 680px) {
 
     #content {
         padding-top: 0em
     }
 
-    .title {
+    #content .title,
+    .article-meta .title,
+    .article-meta .article-title,
+    .article-meta .article,
+    .tags, .date {
         margin-left: 0.1em;
+        margin-right: 0.1em;
     }
 
     .article-meta {
@@ -205,14 +237,14 @@ tt { font-size: .9em; font-family: (unquote mono-font) }
 
     .article-meta, .article-content {
         float: left;
-        margin-left: 0em;
-        margin-right: 0em;
-        width: 90%;
-        padding-left: 5%;
+        margin-left: 0.1em;
+        margin-right: 0.1em;
+        /* width: 95%; */
+        /* padding-left: 5%; */
     }
 
     .article, .article-content {
-        margin-left: 0em;
+        margin-left: 0.1em;
         text-align: justify;
     }
 
@@ -221,6 +253,7 @@ tt { font-size: .9em; font-family: (unquote mono-font) }
         display: block;
         margin-left: auto;
         margin-right: auto;
+        border-radius: 8px;
         width: 100%;
     }
 

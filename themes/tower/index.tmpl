@@ -4,7 +4,7 @@
 <h1 class="title">{$index.title}</h1>
 {foreach $obj in $index.content}
   <div class="article-meta">
-    <a class="article-title" href="{$config.domain}/{$obj.url}">{$obj.title}</a>
+    <div class="article-title"><a href="{$config.domain}/{$obj.url}">{$obj.title}</a></div>
     <div class="date"> Written on {$obj.date}</div>
     <div class="article">{$obj.excerpt |noAutoescape}</div>
   </div>
