@@ -15,6 +15,7 @@
    (routing         :initarg :routing        :reader routing)
    (separator       :initarg :separator      :reader separator)
    (sitenav         :initarg :sitenav        :reader sitenav)
+   (siterefs        :initarg :siterefs       :reader siterefs)
    (staging-dir     :initarg :staging-dir    :reader staging-dir)
    (theme           :initarg :theme          :reader theme)
    (title           :initarg :title          :reader title))
@@ -23,6 +24,7 @@
    :license      nil
    :plugins      '((rsync "-avz" "--delete" "--exclude" ".git/" "--exclude" ".gitignore" "--copy-links"))
    :sitenav      nil
+   :siterefs     nil
    :excerpt-sep  "<!--more-->"
    :charset      "UTF-8"
    :lang         "en"

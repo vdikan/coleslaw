@@ -25,14 +25,22 @@
   <body>
     <div class="navigation">
       <div class="nav_logo"></div>
-      <div class="nav_title">
-        <a href="{$config.domain}">{$config.title}</a>
-      </div>
-      <div class="nav_refs">
-        <div class="ref_github" title="vdikan @ GitHub"
-             onclick="window.location='https://github.com/vdikan';"></div>
-        <div class="ref_linkedin" title="Vladimir Dikan @ LinkedIn"
-             onclick="window.location='https://www.linkedin.com/in/vladimir-dikan/';"></div>
+      <div class="nav_header">
+        <div class="nav_title">
+          <a href="{$config.domain}">{$config.title}</a>
+        </div>
+        <div class="nav_sitenav">
+          {foreach $link in $config.sitenav}
+          <div class="sitenav_link">
+            {if $link.relative}
+            <a href="{$config.domain}/{$link.url}">{$link.name}</a>
+            {else}
+            <a href="{$link.url}">{$link.name}</a>
+            {if not isLast($link)} {sp}|{sp} {/if}
+          {/if}
+          </div>
+          {/foreach}
+        </div>
       </div>
       <div class="nav_sides">
         <div class="side_en" title="Good Side" onclick="window.location='{$config.domain}/tag/en.html';">
@@ -42,15 +50,12 @@
           <span>Ru</span>
         </div>
       </div>
-      <div class="nav_sitenav">
-      {foreach $link in $config.sitenav}
-        {if $link.relative}
-          <a href="{$config.domain}/{$link.url}">{$link.name}</a>
-        {else}
-          <a href="{$link.url}">{$link.name}</a>
-        {/if}
-        {if not isLast($link)} {sp}|{sp} {/if}
-      {/foreach}
+      <div class="nav_refs">
+        {foreach $link in $config.siterefs}
+        <div class="ref_button" title="{$link.title}"
+             style="background: url('{$link.icon}') no-repeat; background-size: 55px 55px; background-position: 0px 0px;"
+             onclick="window.location='{$link.url}';"></div>
+        {/foreach}
       </div>
     </div>
     <div id="content">
