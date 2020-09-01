@@ -75,7 +75,7 @@
   (let ((content (subseq content (* 10 i))))
     (make-instance 'numeric-index :slug (1+ i) :name (1+ i)
                    :content (take-up-to 10 content)
-                   :title "Recent Content")))
+                   :title (or (base-index-title *config*) "Recent Content"))))
 
 (defmethod publish ((doc-type (eql (find-class 'numeric-index))))
   (let ((indexes (sort (find-all 'numeric-index) #'< :key #'index-name)))
