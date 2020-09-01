@@ -234,7 +234,7 @@ tt { font-size: .9em; font-family: (unquote mono-font) }
     .article-meta .article,
     .tags, .date {
         margin-left: 0.1em;
-        margin-right: 0.1em;
+        margin-right: 0.3em;
     }
 
     .article-meta {
@@ -242,11 +242,9 @@ tt { font-size: .9em; font-family: (unquote mono-font) }
     }
 
     .article-meta, .article-content {
-        /* float: left; */
         margin-left: 0.1em;
-        margin-right: 0.1em;
+        margin-right: 0.3em;
         width: 100%;
-        /* padding-left: 5%; */
     }
 
     .article, .article-content {
