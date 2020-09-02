@@ -4,6 +4,7 @@
     color:#f4f4f4;
     border: 2px solid;
     border-color: #000;
+    line-height: 1.2;
 }
 #header { float: right; margin-left: 1em; margin-bottom: 1em }
 #coleslaw-logo { float: right; }
@@ -225,7 +226,8 @@ tt { font-size: .9em; font-family: (unquote mono-font) }
 @media (max-width: 680px) {
 
     #content {
-        padding-top: 0em
+        padding-top: 0em;
+        padding-right: 0.3em;
     }
 
     #content .title,
@@ -234,7 +236,7 @@ tt { font-size: .9em; font-family: (unquote mono-font) }
     .article-meta .article,
     .tags, .date {
         margin-left: 0.1em;
-        margin-right: 0.3em;
+        margin-right: 0.1em;
     }
 
     .article-meta {
@@ -243,7 +245,7 @@ tt { font-size: .9em; font-family: (unquote mono-font) }
 
     .article-meta, .article-content {
         margin-left: 0.1em;
-        margin-right: 0.3em;
+        margin-right: 0.1em;
         width: 100%;
     }
 
@@ -271,6 +273,10 @@ tt { font-size: .9em; font-family: (unquote mono-font) }
         margin-right: auto;
         float: none;
         width: auto;
+    }
+
+    .fineprint {
+        margin-left: 0em;
     }
 
     .fineprint a img {
