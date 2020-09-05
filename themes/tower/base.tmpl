@@ -58,8 +58,20 @@
         {/foreach}
       </div>
     </div>
-    <div id="content">
-      {$raw |noAutoescape}
+    <div id="content-wrapper">
+      <div id="content">
+        {$raw |noAutoescape}
+      </div>
+      <div id="media-timelines">
+        <a class="twitter-timeline"
+           data-lang="en"
+           data-dnt="true"
+           data-theme="dark"
+           data-height="800"
+           data-chrome="transparent"
+           href="https://twitter.com/ivorysiegetower?ref_src=twsrc%5Etfw">Tweets by ivorysiegetower</a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </div>
     </div>
     {if $injections.body}
       {foreach $injection in $injections.body}

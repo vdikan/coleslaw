@@ -1,3 +1,7 @@
+#content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
 #content {
     background: #333c57;
     padding-top: 1em;
