@@ -230,6 +230,52 @@ tt { font-size: .9em; font-family: (unquote mono-font) }
     height: 100%;
 }
 
+/* Library Hall */
+.library-hall {
+    max-width:1100px;
+    width:100%;
+    margin: 0 auto;
+}
+
+.library-hall img {
+    width:100%;
+}
+
+#book-list {
+    margin-left: 1.6em;
+    margin-right: 1.6em;
+}
+
+.book-record {
+    margin-bottom: 0.6em;
+    text-align: justify;
+}
+
+.book-title {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.book-author-date {
+    color: #94b0c2;
+}
+
+.shelf-fiction, .shelf-fiction a {
+    color: #7ec7ff;
+}
+
+.shelf-compsci, .shelf-compsci a {
+    color: #9cffca;
+}
+
+.shelf-natural, .shelf-natural a {
+    color: #ff6a6a;
+}
+
+.shelf-social, .shelf-social a {
+    color: #d57dff;
+}
+
 /* responsive-ness */
 @media (max-width: 680px) {
 
@@ -257,7 +303,8 @@ tt { font-size: .9em; font-family: (unquote mono-font) }
         width: 100%;
     }
 
-    .article, .article-content {
+    .article, .article-content,
+    #book-list {
         margin-left: 0.1em;
         margin-right: 0.1em;
         text-align: justify;

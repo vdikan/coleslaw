@@ -1,0 +1,66 @@
+{namespace coleslaw.theme.tower}
+
+{template shelf}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/maphilight/1.4.0/jquery.maphilight.min.js" -->
+<!--         type="text/javascript"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-rwdImageMaps/1.6/jquery.rwdImageMaps.min.js"
+        type="text/javascript"></script>
+<h1 class="title">Library Hall -- {sp}{lb}Book_Tracker{rb}</h1>
+
+<div class="article-content">
+  <p>Here I keep track of the books I read sometimes.
+    The reading list itself I organize with help of the
+    <a href="https://github.com/lepisma/org-books" target="_blank">org-books</a>, and parse it with
+    <a href="https://github.com/vindarel/cl-org-mode" target="_blank">cl-org-mode</a> (link to the latest version found).
+  </p>
+
+  <ul style="padding: 0;">
+    <li style="display: inline;"><a href="all.html">All</a></li>
+    <li style="display: inline;"><a href="fiction.html">Fiction</a></li>
+    <li style="display: inline;"><a href="natural.html">Natural_Sciences</a></li>
+    <li style="display: inline;"><a href="social.html">Social_Sciences</a></li>
+    <li style="display: inline;"><a href="compsci.html">Computer_Science</a></li>
+  </ul>
+</div>
+
+<img src="../libmap.jpg" usemap="#image-map" class="map library-hall">
+
+<div class="library-hall">
+  <map name="image-map">
+    <area target="" alt="Fiction" title="Fiction" href="fiction.html"
+          coords="887,47,673,164,671,332,960,478,1060,421,1060,295" shape="poly"
+          data-maphilight='{lb}"strokeColor":"0000ff","strokeWidth":1,"fillColor":"00005f","fillOpacity":0.2{rb}'>
+    <area target="" alt="Natural Sciences" title="Natural Sciences" href="natural.html"
+          coords="494,333,409,387,409,649,525,709,805,531,806,411,657,335" shape="poly"
+          data-maphilight='{lb}"strokeColor":"ff0000","strokeWidth":1,"fillColor":"5f0000","fillOpacity":0.2{rb}'>
+    <area target="" alt="Social Sciences" title="Social Sciences" href="social.html"
+          coords="472,320,661,322,664,106,582,59,438,58,339,120,339,254" shape="poly"
+          data-maphilight='{lb}"strokeColor":"ff00ff","strokeWidth":1,"fillColor":"5f005f","fillOpacity":0.2{rb}'>
+    <area target="" alt="Computer Science & IT" title="Computer Science & IT" href="compsci.html"
+          coords="25,279,25,430,251,575,331,524,327,162,271,131" shape="poly"
+          data-maphilight='{lb}"strokeColor":"00ffff","strokeWidth":1,"fillColor":"005f5f","fillOpacity":0.2{rb}'>
+  </map>
+</div>
+
+<script type="text/javascript">
+  jQuery(document).ready(function(e) {lb}
+    jQuery('img[usemap]').rwdImageMaps();
+  {rb});
+</script>
+
+<h2 class="title">{$shelf.title}</h2>
+
+<div id="book-list">
+{foreach $book in $shelf.booklist}
+  <div class="book-record">
+    <div class="book-title shelf-{$book.shelfstr}">
+      <a href="{$book.goodreads}" target="_blank">{$book.title}</a>
+    </div>
+    <div class="book-author-date">by <span class="book-author shelf-{$book.shelfstr}">{$book.author}</span>;  {sp}{sp}<span class="book-date">added {$book.date}</span></div>
+    <div class="book-review-text">{$book.text |noAutoescape}</div>
+  </div>
+{/foreach}
+</div>
+
+{/template}
