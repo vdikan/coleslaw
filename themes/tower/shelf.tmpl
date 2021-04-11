@@ -1,5 +1,35 @@
 {namespace coleslaw.theme.tower}
 
 {template shelf}
-<h1 class="title">{$shelf.title}</h1>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/maphilight/1.4.0/jquery.maphilight.min.js">
+</script>
+<script type="text/javascript">
+  jQuery(function() {lb}
+      jQuery('.map').maphilight();
+  {rb});
+</script>
+
+<h1 class="title">Library Hall -- {sp}{lb}Book Tracker{rb}</h1>
+
+<img src="../libmap.jpg" usemap="#image-map" class="map">
+
+<map name="image-map">
+  <area target="" alt="Fiction" title="Fiction" href="fiction.html"
+        coords="887,47,673,164,671,332,960,478,1060,421,1060,295" shape="poly"
+        data-maphilight='{lb}"strokeColor":"0000ff","strokeWidth":1,"fillColor":"00005f","fillOpacity":0.2{rb}'>
+  <area target="" alt="Natural Sciences" title="Natural Sciences" href="natural.html"
+        coords="494,333,409,387,409,649,525,709,805,531,806,411,657,335" shape="poly"
+        data-maphilight='{lb}"strokeColor":"ff0000","strokeWidth":1,"fillColor":"5f0000","fillOpacity":0.2{rb}'>
+  <area target="" alt="Social Sciences" title="Social Sciences" href="social.html"
+        coords="472,320,661,322,664,106,582,59,438,58,339,120,339,254" shape="poly"
+        data-maphilight='{lb}"strokeColor":"ff00ff","strokeWidth":1,"fillColor":"5f005f","fillOpacity":0.2{rb}'>
+  <area target="" alt="Computer Science & IT" title="Computer Science & IT" href="compsci.html"
+        coords="25,279,25,430,251,575,331,524,327,162,271,131" shape="poly"
+        data-maphilight='{lb}"strokeColor":"00ffff","strokeWidth":1,"fillColor":"005f5f","fillOpacity":0.2{rb}'>
+</map>
+
+<h2 class="title">{$shelf.title}</h2>
+
 {/template}

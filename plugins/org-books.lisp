@@ -37,7 +37,7 @@
 
 (defmethod discover ((doc-type (eql (find-class 'shelf))))
   (let ((content (by-date (find-all 'post))))
-    (dolist (genre '(compsci social natural fiction))
+    (dolist (genre '(all compsci social natural fiction))
       (let ((shelf (make-instance 'shelf
                                   :genre genre
                                   :content content
