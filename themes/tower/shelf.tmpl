@@ -11,9 +11,17 @@
   {rb});
 </script>
 
-<h1 class="title">Library Hall -- {sp}{lb}Book Tracker{rb}</h1>
+<h1 class="title">Library Hall -- {sp}{lb}Book_Tracker{rb}</h1>
 
-<img src="../libmap.jpg" usemap="#image-map" class="map">
+<div class="article-content">
+  <p>Here I keep track of the books I read sometimes.
+    The reading list itself I organize with help of the
+    <a href="https://github.com/lepisma/org-books" target="_blank">org-books</a>, and parse it with
+    <a href="https://github.com/vindarel/cl-org-mode" target="_blank">cl-org-mode</a> (link to the latest version found).
+  </p>
+</div>
+
+<img src="../libmap.jpg" usemap="#image-map" class="map library-hall">
 
 <map name="image-map">
   <area target="" alt="Fiction" title="Fiction" href="fiction.html"
@@ -31,5 +39,17 @@
 </map>
 
 <h2 class="title">{$shelf.title}</h2>
+
+<div id="book-list">
+{foreach $book in $shelf.booklist}
+  <div class="book-record">
+    <div class="book-title shelf-{$book.shelfstr}">
+      <a href="{$book.goodreads}" target="_blank">{$book.title}</a>
+    </div>
+    <div class="book-author-date">by <span class="book-author shelf-{$book.shelfstr}">{$book.author}</span>;  {sp}{sp}<span class="book-date">added {$book.date}</span></div>
+    <div class="book-review-text">{$book.text |noAutoescape}</div>
+  </div>
+{/foreach}
+</div>
 
 {/template}

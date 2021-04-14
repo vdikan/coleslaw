@@ -1,6 +1,7 @@
 (ql:quickload :coleslaw)
 (ql:quickload :cl-org-mode)
 (ql:quickload :trivia)
+(ql:quickload :cl-ppcre)
 
 (defpackage :coleslaw-org-books
   (:use :cl)
@@ -28,9 +29,6 @@
 ;; (in-package :coleslaw)
 
 
-;; (defclass book (content) ())
-
-
 (defvar *org-src* #p"~/Grimoire/org/brain/Books.org")
 
 
@@ -38,11 +36,21 @@
   '(("Computer Science" compsci)
     ("Social Science"   social)
     ("Natural Science"  natural)
-    ("Fiction"          fiction)))
+    ("Fiction"          fiction))
+  "Shelf categories against their db symbols.")
 
 
 (defun shelf-for-category (name)
   (second (assoc name shelf-categories :test #'string-equal)))
+
+
+(defun shelf-for-symbol (sym)
+  (caar (remove-if-not (lambda (x) (eq sym (second x)))
+                       shelf-categories)))
+
+
+(defun shelf-symbols ()
+  (loop :for shelf-cat :in shelf-categories :collect (second shelf-cat)))
 
 
 (defun parse-org-src ()
@@ -58,7 +66,7 @@
   (trivia:match (get-revised)
     ((cons :entry
            (cons '(:STARS 2 :TITLE "Revised")
-                 (cons x y))) y)))
+                 (cons _ y))) y)))
 
 
 (defun get-category-name (category)
@@ -66,6 +74,14 @@
     ((list* :entry
             (list :stars _ :title name) _)
      name)))
+
+
+(defun cleanup-date (date)
+  (ppcre:regex-replace-all "[\\s\\[\\]]+" date ""))
+
+
+(defun cleanup-text (text)
+  (string-trim " " (ppcre:regex-replace-all "\\n" text " ")))
 
 
 (defun parse-entry (entry shelf-symbol)
@@ -80,37 +96,51 @@
                  review-text))
      (list :title title
            :author author
-           :added-date added-date
+           :date (cleanup-date added-date)
            :goodreads goodreads
-           :review-text review-text
-           :shelf-symbol shelf-symbol))))
+           :text (cleanup-text review-text)
+           :shelfsym shelf-symbol
+           :shelfstr (string-downcase
+                      (format nil "~a" shelf-symbol))))))
 
 
-(loop for category in (get-categories)
-      do (let* ((category-name (get-category-name category))
-                (shelf-symbol (shelf-for-category category-name)))
-           (loop for entry in (cdddr category)
-                 do (print (parse-entry entry shelf-symbol)))))
+(defun get-all-books ()
+  (loop for category in (get-categories)
+        appending (let* ((category-name (get-category-name category))
+                         (shelf-symbol (shelf-for-category category-name)))
+                    (loop for entry in (cdddr category)
+                          collect (parse-entry entry shelf-symbol)))))
 
 
-;;;SHELF
 (defclass base-shelf ()
-  ((genre :initarg :genre :reader shelf-genre)))
+  ((booklist :initarg :books :reader booklist)))
 
 
 (defclass shelf (index base-shelf) ())
 
 
 (defmethod discover ((doc-type (eql (find-class 'shelf))))
-  (let ((content (by-date (find-all 'post))))
-    (dolist (genre '(all compsci social natural fiction))
-      (let ((shelf (make-instance 'shelf
-                                  :genre genre
-                                  :content content
-                                  :slug (string-downcase
-                                         (format nil "~a" genre))
-                                  :name (format nil "shelf-~a" genre)
-                                  :title (format nil "Book Shelf: ~a" genre))))
+  (let ((books (sort (get-all-books) #'string>
+                     :key (lambda (x) (getf x :date)))))
+    (let ((root-shelf
+            (make-instance 'shelf
+                           :books books
+                           :slug "all"
+                           :name "shelf-all"
+                           :title "All the Library Hall Records")))
+      (add-document root-shelf))
+    (dolist (sym (shelf-symbols))
+      (let* ((books
+               (remove-if-not (lambda (x) (eq sym (getf x :shelfsym)))
+                              books))
+             (shelf (make-instance 'shelf
+                                   :books books
+                                   :slug (string-downcase
+                                          (format nil "~a" sym))
+                                   :name (string-downcase
+                                          (format nil "shelf-~a" sym))
+                                   :title (format nil "Book Shelf: ~a"
+                                                  (shelf-for-symbol sym)))))
         (add-document shelf)))))
 
 
