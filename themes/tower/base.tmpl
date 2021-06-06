@@ -54,9 +54,13 @@
       </div>
       <div class="nav_refs">
         {foreach $link in $config.siterefs}
-        <div class="ref_button" title="{$link.title}"
-             style="background: url('{$config.domain}/{$link.icon}') no-repeat; background-size: 55px 55px; background-position: 0px 0px;"
-             onclick="window.location='{$link.url}';"></div>
+          {if not $link.hidden}
+            <div class="ref_button" title="{$link.title}"
+                 style="background: url('{$config.domain}/{$link.icon}') no-repeat; background-size: 55px 55px; background-position: 0px 0px;"
+                 onclick="window.location='{$link.url}';"></div>
+          {else}
+            <span title="{$link.title}"></span>
+          {/if}
         {/foreach}
       </div>
     </div>
